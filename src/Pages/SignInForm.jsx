@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInAccount } from '../Config/api';
+import { loginUserData, signInAccount } from '../Config/api';
+import { useUserContext } from '../context/context';
 
 const SignInForm = () => {
   const navigate = useNavigate()
-
+const {checkAuthUser}=useUserContext()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  async function handleLogin() {
+  async function handleLogin(e) {
+    e.preventDefault()
     try {
       setLoading(true)
-      const user = await signInAccount({ email, password })
+      const user = await loginUserData(email, password)
+      console.log('login', user)
       if (!user) setError(true)
-      navigate('/Dashboard')
+      checkAuthUser()
+      navigate('/')
 
     } catch (error) {
       console.log(error)

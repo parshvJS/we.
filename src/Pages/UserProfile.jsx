@@ -5,7 +5,7 @@ import { getUserProfile } from '../Config/api'
 const UserProfile = () => {
     const {id}=useParams()
     useEffect(async ()=>{
-        const user=await getUserProfile()
+        const user=await getUserProfile(id)
     },[])
   return (
     <div>UserProfile</div>

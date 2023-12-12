@@ -4,7 +4,6 @@
 // const environment variables
 
 import { Account, Avatars, Client, Databases, ID, Query } from "appwrite"
-import { useUserContext } from '../context/Context'
 const appwriteconfi = {
     projectid: import.meta.env.VITE_APPWRITE_PROJECTID,
     endpoint: import.meta.env.VITE_APPWRITE_ENDPOINT,
@@ -26,7 +25,7 @@ export async function createUser(username, name, email, password) {
 
         const newUser = await account.create(ID.unique(), email, password, name)
         if (!newUser) return Error
-        const profileUrl=avatar.getInitials(name, 100, 100).href;
+        const profileUrl = avatar.getInitials(name, 100, 100).href;
         const userData = {
             accountId: newUser.$id,
             username: username,
@@ -36,7 +35,7 @@ export async function createUser(username, name, email, password) {
             imageId: ID.unique()
         }
         const data = await SaveDataToUserDB(userData)
-        
+
         console.log('data : ', data)
         const loginHere = loginUser(email, password)
 
@@ -49,6 +48,20 @@ export async function createUser(username, name, email, password) {
     }
 }
 
+export async function loginUserData(email, password) {
+
+    const login = await loginUser(email, password);
+    console.log('login :', login)
+    const id = login.userId;
+    console.log('id',id)
+    const data = await database.getDocument(
+        appwriteconfi.databaseid,
+        appwriteconfi.user_collection,
+        id
+    )
+    console.log('data of login user is :', data)
+    return data
+}
 // login current user 
 export async function loginUser(email, password) {
     try {
@@ -139,14 +152,15 @@ export async function signInAccount(user) {
 
 
 
-export async function getUserProfile(id){
+export async function getUserProfile(id) {
     try {
-        const user=await database.getDocument(
+        const user = await database.getDocument(
             appwriteconfi.databaseid,
             appwriteconfi.user_collection,
             id
         )
-        if(!user) return Error;
+        if (!user) return Error;
+        console.log('getting data for you',user)
         return user;
     } catch (error) {
         console.log(error)
