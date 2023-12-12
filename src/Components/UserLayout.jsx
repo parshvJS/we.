@@ -17,7 +17,7 @@ const UserLayout = () => {
       <div className=' bg-gradient-to-b from-red-500 via-orange-500 to-orange-400 w-full h-full'>
 
         <div className='flex flex-col'>
-          <TopBar />
+          <TopBar showTitle={true}/>
           <div className='flex flex-1'>
             <SideNavBar />
             <Outlet />

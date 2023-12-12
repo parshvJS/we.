@@ -9,6 +9,7 @@ import Chat from './Pages/Chat'
 import Planner from './Pages/Planner'
 import Folder from './Pages/Folder'
 import UserProfile from './Pages/UserProfile'
+import ClearInfoAuth from './Components/ClearInfoAuth'
 function App() {
 
   return (
@@ -20,8 +21,11 @@ function App() {
           <Route path='/chat' element={<Chat />} />
           <Route path='/planner' element={<Planner />} />
           <Route path='/folder' element={<Folder />} />
-          <Route path='/user/:username' element={<UserProfile />} />
+          
         </Route>
+          <Route  element={<ClearInfoAuth/>}>
+              <Route path='/user/:username' element={<UserProfile/>}/>
+          </Route>
       </Routes>
   )
 }
