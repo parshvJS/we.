@@ -1,0 +1,26 @@
+  <svg
+      width="525"
+      height="510"
+      viewBox="0 0 525 510"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M150.837 510L0.695063 0.909076H154.814L224.417 314.119H228.394L310.922 0.909076H432.229L514.758 315.114H518.735L588.337 0.909076H742.456L592.314 510H460.07L373.564 225.625H369.587L283.081 510H150.837Z"
+        fill="url(#paint0_linear_4_104)"
+        className="text-current"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear_4_104"
+          x1="291.263"
+          y1="-221"
+          x2="156.59"
+          y2="727.003"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="currentColor" />
+          <stop offset="1" stopColor="currentColor" />
+        </linearGradient>
+      </defs>
+    </svg>

@@ -1,0 +1,8 @@
+/* TopBar.css */
+.notification-icon {
+    transition: filter 0.3s; /* Add a smooth transition effect */
+}
+
+.notification-icon:hover {
+    filter: grayscale(100%); /* Make the icon gray on hover */
+}
