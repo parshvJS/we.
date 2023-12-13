@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getUserProfile } from '../Config/api';
 import '@popperjs/core';
+import { useUserContext } from '../context/Context';
 
 const UserProfile = () => {
   const { username } = useParams();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const {user:userContext}=useUserContext()
   useEffect(() => {
     const fetchData = async () => {
       try {
         const userProfile = await getUserProfile(username);
         setUser(userProfile);
+        console.log(userContext)
+        console.log(user,'username',username)
         setLoading(false);
       } catch (error) {
         console.error('Error fetching user profile:', error);
@@ -66,7 +69,7 @@ const UserProfile = () => {
                     <p className='text-center text-black text-[16px] text-base font-normal'>{user.bio}</p>
                   )}
                 </div>
-                {username === user.id && (
+                {username ===userContext.id && (
                   <div className='absolute top-[120px] right-[390px]'>
                     <Link to={`/edit/${username}`}>
                       <img className='w-[35px] h-[35px] p-1 rounded-full m-3 hover:bg-[#fbfbfb] transition overflow-hidden' src="/src/assets/icons/edit-profile.png" alt="Edit Profile" />
