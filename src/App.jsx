@@ -13,10 +13,11 @@ import ClearInfoAuth from './Components/ClearInfoAuth'
 function App() {
 
   return (
-      <Routes>
+ <div className='w-full h-full'>
+       <Routes>
         <Route path='/sign-in' element={<SignInForm />} />
         <Route path='/sign-up' element={<SignUpForm />} />
-        <Route element={<UserLayout />}>
+        <Route  element={<UserLayout />}>
           <Route index element={<DashBoard />} />
           <Route path='/chat' element={<Chat />} />
           <Route path='/planner' element={<Planner />} />
@@ -27,6 +28,8 @@ function App() {
               <Route path='/user/:username' element={<UserProfile/>}/>
           </Route>
       </Routes>
+  
+ </div>
   )
 }
 
